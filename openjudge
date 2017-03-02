@@ -1,0 +1,64 @@
+    server 
+	{
+        listen       80;
+        server_name atj.openjudge.tk;
+		return 301 https://atj.openjudge.tk$request_uri;
+    }
+
+    # HTTPS server
+    server 
+	{
+        listen       443 ssl;
+        server_name  atj.openjudge.tk;
+
+        ssl_certificate      /etc/letsencrypt/live/atj.openjudge.tk/cert.pem;
+        ssl_certificate_key  /etc/letsencrypt/live/atj.openjudge.tk/privkey.pem;
+
+        ssl_session_cache    shared:SSL:1m;
+        ssl_session_timeout  5m;
+
+        ssl_ciphers  HIGH:!aNULL:!MD5;
+        ssl_prefer_server_ciphers  on;
+	
+		# serve static files
+		location ~ ^/(images|javascript|js|css|flash|media|static)/  
+		{
+			root /php_web/AT-Judge;
+			expires 30d;
+		}
+
+		location /
+		{
+			proxy_pass http://127.0.0.1:91;
+		}
+    }
+    upstream judgata_upstream {
+      server 127.0.0.1:3000;
+      keepalive 64;
+}
+    server 
+	{
+        listen       80;
+        server_name judgata.openjudge.tk;
+		return 301 https://judgata.openjudge.tk$request_uri;
+    }
+    # HTTPS server
+    server 
+	{
+        listen       443 ssl;
+        server_name  judgata.openjudge.tk;
+
+        ssl_certificate      /etc/letsencrypt/live/judgata.openjudge.tk/cert.pem;
+        ssl_certificate_key  /etc/letsencrypt/live/judgata.openjudge.tk/privkey.pem;
+
+        ssl_session_cache    shared:SSL:1m;
+        ssl_session_timeout  5m;
+
+        ssl_ciphers  HIGH:!aNULL:!MD5;
+        ssl_prefer_server_ciphers  on;
+	
+		location /
+		{
+			proxy_pass http://judgata_upstream/;
+		}
+    }

@@ -1,0 +1,25 @@
+    server 
+	{
+        listen       80;
+        server_name  judge.techedu.tk;
+	return 301 https://judge.techedu.tk/;
+    }
+    server 
+	{
+        listen       443 ssl;
+        server_name  judge.techedu.tk;
+
+        ssl_certificate      /etc/letsencrypt/live/judge.techedu.tk/cert.pem;
+        ssl_certificate_key  /etc/letsencrypt/live/judge.techedu.tk/privkey.pem;
+
+        ssl_session_cache    shared:SSL:1m;
+        ssl_session_timeout  5m;
+
+        ssl_ciphers  HIGH:!aNULL:!MD5;
+        ssl_prefer_server_ciphers  on;
+	
+		location / 
+		{
+			proxy_pass http://localhost:91/;
+		}
+    }
