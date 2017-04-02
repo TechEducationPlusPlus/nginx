@@ -21,10 +21,9 @@
         ssl_prefer_server_ciphers  on;
 	
 		# serve static files
-		location ~ ^/(images|javascript|js|css|flash|media|static)/  
-		{
-			root /php_web/AT-Judge;
-			expires 30d;
+		location ~*  \.(jpg|jpeg|png|gif|ico|css|js)$ {
+		    root /php_web/AT-Judge;
+		    expires 365d;
 		}
 
 		location /

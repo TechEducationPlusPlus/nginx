@@ -6,7 +6,7 @@
 		
 		location /
 		{
-			proxy_pass https://infocourse.techedu.cf;
+			proxy_pass https://infocourse.techedu.tk;
 		}
 	}
     
@@ -16,8 +16,8 @@
         server_name  infocourse.techedu.cf;
 		access_log /php_web/nginx/logs/infocourse.access.log main;
 
-        ssl_certificate      /etc/letsencrypt/live/infocourse.techedu.cf/cert.pem;
-        ssl_certificate_key  /etc/letsencrypt/live/infocourse.techedu.cf/privkey.pem;
+        ssl_certificate      /etc/letsencrypt/live/infocourse.techedu.tk/cert.pem;
+        ssl_certificate_key  /etc/letsencrypt/live/infocourse.techedu.tk/privkey.pem;
 
         ssl_session_cache    shared:SSL:1m;
         ssl_session_timeout  5m;

@@ -7,12 +7,9 @@
     server 
 	{
         listen       80;
-        server_name  resourcce.techedu.cf;
-		root /php_web/Resources;
-		index index.html index.htm;	
-
+        server_name  resources.techedu.cf;
 		location / {
-			try_files   $uri $uri/ $uri.html  =404;
+			proxy_pass http://127.0.0.1:8080/
 		}
 		
 		location ~*  \.(jpg|jpeg|png|gif|ico|css|js|pdf)$ {

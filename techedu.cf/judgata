@@ -26,6 +26,10 @@
 	
 		root /etc/www/TechEdu/judge;
 		index index.html index.htm;	
+		location ~*  \.(jpg|jpeg|png|gif|ico|css|js)$ {
+		    root /etc/www/TechEdu/The-judgata/Server/static/;
+		    expires 365d;
+		}
 
 		location / 
 		{

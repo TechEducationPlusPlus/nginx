@@ -2,8 +2,9 @@
 	{
         listen       80;
         server_name  judge.techedu.cf;
-	return 301 https://judge.techedu.cf/;
+		return 301 https://judge.techedu.cf$request_uri;
     }
+    # HTTPS server
     server 
 	{
         listen       443 ssl;
@@ -18,8 +19,8 @@
         ssl_ciphers  HIGH:!aNULL:!MD5;
         ssl_prefer_server_ciphers  on;
 	
-		location / 
+		location /
 		{
-			proxy_pass http://localhost:91/;
+			proxy_pass http://judgata_upstream/;
 		}
     }
