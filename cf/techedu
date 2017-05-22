@@ -2,7 +2,33 @@
 	include /php_web/nginx/cf/chat;
 	include /php_web/nginx/cf/judgata;
 	include /php_web/nginx/cf/infocourse;
+    
+	server 
+	{
+        listen       80;
+        server_name  admin.techedu.cf;
+		
+		root /php_web/Admin-Panel/;
+		index index.html;	
 
+		location / {
+			proxy_pass http://127.0.0.1:10o;
+		}
+    }
+
+
+    server 
+	{
+        listen       80;
+        server_name  fb.techedu.cf;
+		
+		root /php_web/Facebook/;
+		index index.html;	
+
+		location / {
+			proxy_pass http://127.0.0.1:101;
+		}
+    }
 
     server 
 	{

@@ -6,7 +6,10 @@
 		root /etc/www/my_site;
 		index index.html index.htm;	
 
-			return 301 https://tsalex.tk/;
+		location / 
+		{
+			try_files   $uri $uri/  =404;
+		}
     }
     
     # HTTPS server
@@ -15,8 +18,8 @@
         listen       443 ssl;
         server_name  tsalex.tk;
 
-        ssl_certificate      /etc/letsencrypt/live/tsalex.tk-0002/cert.pem;
-        ssl_certificate_key  /etc/letsencrypt/live/tsalex.tk-0002/privkey.pem;
+        ssl_certificate      /etc/letsencrypt/live/tsalex.tk/cert.pem;
+        ssl_certificate_key  /etc/letsencrypt/live/tsalex.tk/privkey.pem;
 
         ssl_session_cache    shared:SSL:1m;
         ssl_session_timeout  5m;

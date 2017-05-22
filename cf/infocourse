@@ -4,9 +4,19 @@
 		listen 80;
 		server_name infocourse.techedu.cf;
 		
+		root /etc/www/TechEdu/infocourse;
+		index index.html index.htm;	
+
+		# serve static files
+		location ~ ^/(images|javascript|js|css|flash|media|static)/  
+		{
+			root /php_web/infocourse;
+			expires 30d;
+		}
+
 		location /
 		{
-			proxy_pass https://infocourse.techedu.cf;
+			proxy_pass http://127.0.0.1:81;
 		}
 	}
     

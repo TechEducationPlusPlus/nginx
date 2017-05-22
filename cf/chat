@@ -2,7 +2,7 @@
 	{
         listen       80;
         server_name  chat.techedu.cf;
-		return 301 https://chat.techedu.cf/;
+return 304 https://chat.techedu.cf/;
     }
     server 
 	{
